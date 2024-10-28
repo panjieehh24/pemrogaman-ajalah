@@ -1,0 +1,123 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Structure to hold student data
+struct Student {
+    long long NISN;
+    string Name;
+    int Value;
+};
+
+// Function to print the student data
+void printStudents(Student students[], int size) {
+    for (int i = 0; i < size; i++) {
+        cout << students[i].NISN << "\t" << students[i].Name << "\t" << students[i].Value << endl;
+    }
+}
+
+// Insertion Sort by NISN (Descending)
+void insertionSortByNISN(Student students[], int size) {
+    for (int i = 1; i < size; i++) {
+        Student temp = students[i];
+        int j = i - 1;
+        while (j >= 0 && students[j].NISN < temp.NISN) {
+            students[j + 1] = students[j];
+            j--;
+        }
+        students[j + 1] = temp;
+    }
+}
+
+// Insertion Sort by Value (Descending)
+void insertionSortByValue(Student students[], int size) {
+    for (int i = 1; i < size; i++) {
+        Student temp = students[i];
+        int j = i - 1;
+        while (j >= 0 && students[j].Value < temp.Value) {
+            students[j + 1] = students[j];
+            j--;
+        }
+        students[j + 1] = temp;
+    }
+}
+
+// Selection Sort by NISN (Descending)
+void selectionSortByNISN(Student students[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        int maxIdx = i;
+        for (int j = i + 1; j < size; j++) {
+            if (students[j].NISN > students[maxIdx].NISN) {
+                maxIdx = j;
+            }
+        }
+        swap(students[i], students[maxIdx]);
+    }
+}
+
+// Selection Sort by Value (Descending)
+void selectionSortByValue(Student students[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        int maxIdx = i;
+        for (int j = i + 1; j < size; j++) {
+            if (students[j].Value > students[maxIdx].Value) {
+                maxIdx = j;
+            }
+        }
+        swap(students[i], students[maxIdx]);
+    }
+}
+
+// Bubble Sort by NISN (Descending)
+void bubbleSortByNISN(Student students[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (students[j].NISN < students[j + 1].NISN) {
+                swap(students[j], students[j + 1]);
+            }
+        }
+    }
+}
+
+// Bubble Sort by Value (Descending)
+void bubbleSortByValue(Student students[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (students[j].Value < students[j + 1].Value) {
+                swap(students[j], students[j + 1]);
+            }
+        }
+    }
+}
+
+int main() {
+    // Student data
+    Student students[] = {
+        {9960312699, "Handi Ramadhan", 90},
+        {9963959682, "Rio Alfandra", 55},
+        {9950310962, "Ronaldo Valentino Uneputty", 80},
+        {9970272750, "Achmad Yaumil Fadjri R.", 60},
+        {9970293945, "Alivia Rahma Pramesti", 70},
+        {9952382180, "Ari Lutfianto", 65},
+        {9965653989, "Arief Budiman", 60}
+    };
+    int size = sizeof(students) / sizeof(students[0]);
+
+    // Example usage: Sorting by NISN in descending order using Insertion Sort
+    cout << "Sorting by NISN using Insertion Sort:\n";
+    insertionSortByNISN(students, size);
+    printStudents(students, size);
+
+    // Sorting by Value in descending order using Selection Sort
+    cout << "\nSorting by Value using Selection Sort:\n";
+    selectionSortByValue(students, size);
+    printStudents(students, size);
+
+    // Sorting by NISN in descending order using Bubble Sort
+    cout << "\nSorting by NISN using Bubble Sort:\n";
+    bubbleSortByNISN(students, size);
+    printStudents(students, size);
+
+    return 0;
+}
