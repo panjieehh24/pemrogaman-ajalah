@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int f(int n) {
+    if (n > 1) {
+        return f(n - 1) * n;
+    } else {
+        return 1;
+    }
+}
+
+int main() {
+    cout << "The function of f(5) is: " << endl;
+    cout << f(5);
+    return 0;
+}
