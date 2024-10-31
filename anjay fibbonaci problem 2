@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+int k(int m, int n) {
+    // Base case: if either m or n is 0, there's only one path
+    if (m == 0 || n == 0)
+        return 1;
+    // Recursive case: move either left or up
+    return k(m - 1, n) + k(m, n - 1);
+}
+
+int main() {
+    cout << k(2, 3);  // This will output the number of unique paths for a 2x3 grid
+    return 0;
+}
