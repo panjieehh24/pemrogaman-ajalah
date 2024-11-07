@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int dateOfBirth(double a){
+    string b = to_string(a);
+    int tahun = (b[0]-'0') * 1000 + (b[1]-'0') * 100 + (b[2]-'0') * 10 + (b[3]-'0');
+    int bulan = (b[4]-'0') * 10 + (b[5]-'0');
+    int tanggal = (b[6]-'0') * 10 + (b[7]-'0');
+    int fullTanggal = tahun * 10000 + bulan * 100 + tanggal;
+    if(fullTanggal<20241107) return 2024 - tahun - 1; // 19821229 < or > 20241107
+    else return 2024 - tahun;
+}   
+
+int lengthOfEmployment(double a){
+    string b = to_string(a);
+    int tahun = (b[8]-'0') * 1000 + (b[9]-'0') * 100 + (b[10]-'0') * 10 + (b[11]-'0');
+    int bulan = (b[12]-'0') * 10 + (b[13]-'0');
+    int fullTanggal = tahun * 100 + bulan;
+    if(fullTanggal<202411) return 2024 - tahun - 1;
+    else return 2024 - tahun;
+}
+
+int main(){
+    double employeeNumber;
+    cout << "Please give me an 18 digit employee number: \n";
+    cout << "------------------------------------------------------ \n";
+    cout << "Please enter the employee number with this requirement \n";
+    cout << "1-4 for the year of birth, \n";
+    cout << "5-6 for the month of birth, \n";
+    cout << "7-8 for the date of birth, \n";
+    cout << "9-12 for the starting year of employment, \n";
+    cout << "13-14 for the month of starting work, \n"; 
+    cout << "15-18 for the employee id. \n";
+    cout << "Employee Number: ";
+    cin >> employeeNumber;
+    cout << "The employee is " << dateOfBirth(employeeNumber) << " years old" << endl;
+    cout << "Employee work time: " << lengthOfEmployment(employeeNumber) << " years" << endl;
+    cout << "This Employee has: " <<  65 - dateOfBirth(employeeNumber) << " years left on the job before he/she retire" << endl;
+    return 0;
+}
